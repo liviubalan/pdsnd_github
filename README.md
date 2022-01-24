@@ -1,17 +1,20 @@
->**Note**: Please **fork** the current Udacity repository so that you will have a **remote** repository in **your** Github account. Clone the remote repository to your local machine. Later, as a part of the project "Post your Work on Github", you will push your proposed changes to the remote repository in your Github account.
-
 ### Date created
-Include the date you created this project and README file.
+2022-01-24
 
 ### Project Title
-Replace the Project Title
+Explore US Bikeshare Data
 
 ### Description
-Describe what your project is about and what it does
+Use Python to understand U.S. bikeshare data.  Calculate statistics and build an interactive environment where a user chooses the data and filter for a dataset to analyze.
 
 ### Files used
-Include the files used
+chicago.csv
 
 ### Credits
-It's important to give proper credit. Add links to any repo that inspired you or blogposts you consulted.
-
+Resources:
+* https://stackoverflow.com/questions/51212631/user-input-against-a-list-python
+* https://careerkarma.com/blog/python-check-if-file-exists/
+* https://stackoverflow.com/questions/285289/exit-codes-in-python
+* https://datascientyst.com/convert-datetime-day-of-week-name-number-in-pandas/
+* https://stackoverflow.com/questions/60214194/error-in-reading-stock-data-datetimeproperties-object-has-no-attribute-week
+* https://stackoverflow.com/questions/48590268/pandas-get-the-most-frequent-values-of-a-column/48590361
