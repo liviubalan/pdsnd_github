@@ -10,6 +10,7 @@ Use Python to understand U.S. bikeshare data.  Calculate statistics and build an
 ### Files used
 .gitignore
 chicago.csv
+README.md
 
 ### Credits
 Resources:
