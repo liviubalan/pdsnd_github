@@ -67,3 +67,6 @@ Resources:
 * https://stackoverflow.com/questions/60214194/error-in-reading-stock-data-datetimeproperties-object-has-no-attribute-week
 * https://stackoverflow.com/questions/48590268/pandas-get-the-most-frequent-values-of-a-column/48590361
 * https://stackoverflow.com/questions/20303826/highlight-bash-shell-code-in-markdown-files
+* https://stackoverflow.com/questions/15943769/how-do-i-get-the-row-count-of-a-pandas-dataframe
+* https://stackoverflow.com/questions/10665889/how-to-take-column-slices-of-dataframe-in-pandas
+* https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.iloc.html

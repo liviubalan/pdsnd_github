@@ -1,6 +1,5 @@
 import os
 import pandas as pd
-import numpy as np
 import sys
 import time
 
@@ -55,12 +54,12 @@ def load_data(city, month, day):
         df - Pandas DataFrame containing city data filtered by month and day
     """
     # check CSV file based on city name
-    file = './' + city + '.csv'
+    file = CITY_DATA[city]
     if not os.path.exists(file):
         liviu_halt('File "{}" not found. Enter another city name.'.format(file))
 
     # read CSV into DataFrame
-    df = pd.read_csv(city+'.csv')
+    df = pd.read_csv(file)
 
     # convert the Start Time column to datetime
     df['Start Time'] = pd.to_datetime(df['Start Time'])
@@ -155,17 +154,19 @@ def user_stats(df):
     value = df['User Type'].value_counts()
     print('Counts of user types:\n{}'.format(value))
 
-    # TODO: Display counts of gender
-    value = df['Gender'].value_counts()
-    print('Counts of gender:\n{}'.format(value))
+    if 'Gender' in df.columns:
+        # TODO: Display counts of gender
+        value = df['Gender'].value_counts()
+        print('Counts of gender:\n{}'.format(value))
 
-    # TODO: Display earliest, most recent, and most common year of birth
-    value = df['Birth Year'].min()
-    print('Earliest year of birth: {}'.format(value))
-    value = df['Birth Year'].max()
-    print('Most recent year of birth: {}'.format(value))
-    value = df['Birth Year'].mode()[0]
-    print('Most common year of birth: {}'.format(value))
+    if 'Birth Year' in df.columns:
+        # TODO: Display earliest, most recent, and most common year of birth
+        value = df['Birth Year'].min()
+        print('Earliest year of birth: {}'.format(value))
+        value = df['Birth Year'].max()
+        print('Most recent year of birth: {}'.format(value))
+        value = df['Birth Year'].mode()[0]
+        print('Most common year of birth: {}'.format(value))
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
@@ -174,9 +175,11 @@ def user_stats(df):
 def liviu_read(message, white_list):
     """Read a value until is one in the white list."""
     while True:
-        value = input(message)
+        value = input(message).lower()
         if value in white_list:
             break
+        else:
+            print('Invalid value. Please enter one of the following: {}.'.format(', '.join(white_list)))
 
     return value
 
@@ -185,6 +188,20 @@ def liviu_halt(message, exit_status=os.EX_DATAERR):
     """Display the error and exit with a status code."""
     print(message)
     sys.exit(exit_status)
+
+
+def liviu_display_dataframe(df):
+    """Display DataFrame raw data."""
+    i = 0
+    n = df.shape[0]
+    step = 5
+    while True:
+        view_data = input('\nWould you like to see the raw data? Type "yes" or "no": ').lower()
+        if view_data == 'yes' and i <= n:
+            print(df.iloc[i:i+step])
+            i += step
+        else:
+            break
 
 
 def main():
@@ -196,8 +213,9 @@ def main():
         station_stats(df)
         trip_duration_stats(df)
         user_stats(df)
+        liviu_display_dataframe(df)
 
-        restart = input('\nWould you like to restart? Enter yes or no.\n')
+        restart = input('\nWould you like to restart? Enter "yes" or "no": ')
         if restart.lower() != 'yes':
             break
 
