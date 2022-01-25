@@ -18,9 +18,7 @@ def get_filters():
     print('Hello! Let\'s explore some US bikeshare data!')
 
     # TODO: get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
-    cities = ['chicago', 'new york city', 'washington']
-    message = 'City name: (Allowed {}): '.format(', '.join(cities))
-    city = liviu_read(message, cities)
+    city = liviu_read_city('City name: ')
 
     # TODO: get user input for month (all, january, february, ... , june)
     months = [ALL, 'january', 'february', 'march', 'april', 'may', 'june']
@@ -50,12 +48,8 @@ def load_data(city, month, day):
     Returns:
         df - Pandas DataFrame containing city data filtered by month and day
     """
-    # check CSV file based on city name
-    file = './' + city + '.csv'
-    if not os.path.exists(file):
-        liviu_halt('File "{}" not found. Enter another city name.'.format(file))
-
     # read CSV into DataFrame
+    file = './' + city + '.csv'
     df = pd.read_csv(file)
 
     # convert the Start Time column to datetime
@@ -167,6 +161,20 @@ def user_stats(df):
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
+
+
+def liviu_read_city(message):
+    """Read a value until is one in the white list."""
+    while True:
+        city = input(message).lower()
+        # check CSV file based on city name
+        file = './' + city + '.csv'
+        if os.path.exists(file):
+            break
+        else:
+            print('File "{}" not found. Enter another city name.'.format(file))
+
+    return city
 
 
 def liviu_read(message, white_list):
